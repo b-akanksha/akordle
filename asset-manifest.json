@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/akordle/static/css/main.073c9b0a.css",
-    "main.js": "/akordle/static/js/main.f0809dad.js",
+    "main.css": "/akordle/static/css/main.ad4ae01e.css",
+    "main.js": "/akordle/static/js/main.f6827335.js",
     "static/js/787.91c1f21b.chunk.js": "/akordle/static/js/787.91c1f21b.chunk.js",
-    "static/media/logo.svg": "/akordle/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/akordle/index.html",
-    "main.073c9b0a.css.map": "/akordle/static/css/main.073c9b0a.css.map",
-    "main.f0809dad.js.map": "/akordle/static/js/main.f0809dad.js.map",
+    "main.ad4ae01e.css.map": "/akordle/static/css/main.ad4ae01e.css.map",
+    "main.f6827335.js.map": "/akordle/static/js/main.f6827335.js.map",
     "787.91c1f21b.chunk.js.map": "/akordle/static/js/787.91c1f21b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.f0809dad.js"
+    "static/css/main.ad4ae01e.css",
+    "static/js/main.f6827335.js"
   ]
 }
