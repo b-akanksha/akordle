@@ -1,11 +1,11 @@
-import { consfigureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit'
 
-import akordleReducer from './redux/akordle';
+import akordleReducer from './redux/akordle'
 
-const store = consfigureStore({
+const store = configureStore({
     reducer: {
-        akordle: akordleReducer
-    }
-});
+        akordle: akordleReducer,
+    },
+})
 
-export default store;
+export default store
