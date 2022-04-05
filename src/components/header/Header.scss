@@ -1,0 +1,17 @@
+$header-border-color: #bebebe;
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-bottom: 1px solid $header-border-color;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+header .wordle-name {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 3rem;
+}
