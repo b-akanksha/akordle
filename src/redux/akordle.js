@@ -8,7 +8,7 @@ const akordleSlice = createSlice({
     name: 'akordle',
     initialState: {
         streak: 0,
-        difficulty: 2,
+        difficulty: 5,
         boardData: ['', '', '', '', '', ''],
         currentTurn: 0,
         currentWord: '',
@@ -34,11 +34,11 @@ const akordleSlice = createSlice({
 
             state.status = null
 
-            if (state.difficulty === 1) {
+            if (state.difficulty === 4) {
                 state.unusedWords = FourWords
-            } else if (state.difficulty === 2) {
+            } else if (state.difficulty === 5) {
                 state.unusedWords = FiveWords
-            } else if (state.difficulty === 3) {
+            } else if (state.difficulty === 6) {
                 state.unusedWords = SixWords
             }
 
@@ -67,11 +67,11 @@ const akordleSlice = createSlice({
             state.status = null
 
             if (state.unusedWords.length >= 0) {
-                if (state.difficulty === 1) {
+                if (state.difficulty === 4) {
                     state.unusedWords = FourWords
-                } else if (state.difficulty === 2) {
+                } else if (state.difficulty === 5) {
                     state.unusedWords = FiveWords
-                } else if (state.difficulty === 3) {
+                } else if (state.difficulty === 6) {
                     state.unusedWords = SixWords
                 }
             }
@@ -84,9 +84,81 @@ const akordleSlice = createSlice({
                 (word) => word !== state.unusedWords[randomWordIndex]
             )
         },
+        addLetter(state, action) {
+            if (state.boardData[state.currentTurn].length < state.difficulty) {
+                state.boardData[state.currentTurn] =
+                    state.boardData[state.currentTurn] + action.payload.letter
+            }
+        },
+        removeLetter(state) {
+            if (state.boardData[state.currentTurn].length > 0) {
+                let dataLength = state.boardData[state.currentTurn].length
+                state.boardData[state.currentTurn] = state.boardData[
+                    state.currentTurn
+                ].substring(0, dataLength - 1)
+            }
+        },
+        submitWord(state) {
+            // First we check to make sure that the word as a length of six or more
+            // because smaller lengths are invalid.
+            if (state.boardData[state.currentTurn].length >= state.difficulty) {
+                let boardWordData = state.boardData[state.currentTurn]
+                    .toUpperCase()
+                    .split('')
+                let currentWordData = state.currentWord.toUpperCase().split('')
+
+                for (let i = 0; i < state.difficulty; i++) {
+                    if (
+                        boardWordData[i] === currentWordData[i] &&
+                        !state.exactLetters.includes(boardWordData[i])
+                    ) {
+                        state.exactLetters = [
+                            ...state.exactLetters,
+                            boardWordData[i],
+                        ]
+                    } else if (
+                        currentWordData.includes(boardWordData[i]) &&
+                        !state.misplacedLetters.includes(boardWordData[i])
+                    ) {
+                        state.misplacedLetters = [
+                            ...state.misplacedLetters,
+                            boardWordData[i],
+                        ]
+                    } else {
+                        if (!state.unusedLetters.includes(boardWordData[i])) {
+                            state.unusedLetters = [
+                                ...state.unusedLetters,
+                                boardWordData[i],
+                            ]
+                        }
+                    }
+                }
+
+                if (
+                    state.boardData[state.currentTurn].toUpperCase() !==
+                    state.currentWord.toUpperCase()
+                ) {
+                    if (state.currentTurn >= 5) {
+                        state.status = 'round_lost'
+                    } else {
+                        state.currentTurn = state.currentTurn + 1
+                    }
+                } else {
+                    state.status = 'round_won'
+                    state.currentTurn = state.currentTurn + 1
+                }
+            }
+        },
     },
 })
 
-export const { resetGame, setDifficulty, advanceRound } = akordleSlice.actions
+export const {
+    resetGame,
+    setDifficulty,
+    advanceRound,
+    addLetter,
+    removeLetter,
+    submitWord,
+} = akordleSlice.actions
 
 export default akordleSlice.reducer

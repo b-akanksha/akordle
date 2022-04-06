@@ -10,13 +10,13 @@ const AkordleInfo = () => {
 
     const handleChangeDifficulty = (event) => {
         if (event.target.options.selectedIndex === 0) {
-            dispatch(setDifficulty({ difficulty: 1 }))
+            dispatch(setDifficulty({ difficulty: 4 }))
             dispatch(resetGame())
         } else if (event.target.options.selectedIndex === 1) {
-            dispatch(setDifficulty({ difficulty: 2 }))
+            dispatch(setDifficulty({ difficulty: 5 }))
             dispatch(resetGame())
         } else if (event.target.options.selectedIndex === 2) {
-            dispatch(setDifficulty({ difficulty: 3 }))
+            dispatch(setDifficulty({ difficulty: 6 }))
             dispatch(resetGame())
         }
     }
