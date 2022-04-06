@@ -1,0 +1,17 @@
+.akordle-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #bebebe;
+    font-size: 1.25rem;
+    text-align: center;
+    padding: 0.5rem 0px 0.5rem 0px;
+}
+
+.akordle-info .akordle-difficulty select {
+    background-color: #ebebeb;
+    font-size: 1rem;
+    border-radius: 5px;
+    padding: 3px;
+}
