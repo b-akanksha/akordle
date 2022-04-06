@@ -6,7 +6,7 @@ import './AkordleInfo.scss'
 const AkordleInfo = () => {
     const dispatch = useDispatch()
 
-    const streak = useSelector((state) => state.akordle.streak)
+    const { streak } = useSelector((state) => state.akordle)
 
     const handleChangeDifficulty = (event) => {
         if (event.target.options.selectedIndex === 0) {
