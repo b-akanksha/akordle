@@ -34,11 +34,11 @@ const akordleSlice = createSlice({
 
             state.status = null
 
-            if (state.difficulty === 4) {
+            if (state.difficulty === 1) {
                 state.unusedWords = FourWords
-            } else if (state.difficulty === 5) {
+            } else if (state.difficulty === 2) {
                 state.unusedWords = FiveWords
-            } else if (state.difficulty === 6) {
+            } else if (state.difficulty === 3) {
                 state.unusedWords = SixWords
             }
 
@@ -58,4 +58,4 @@ const akordleSlice = createSlice({
 
 export const { resetGame, setDifficulty } = akordleSlice.actions
 
-export default akordleSlice.reducers
+export default akordleSlice.reducer
