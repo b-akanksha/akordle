@@ -3,6 +3,7 @@ import Header from './components/header/Header'
 import './App.scss'
 import AkordleInfo from './components/akordleInfo/AkordleInfo'
 import Board from './components/boad/Board'
+import Keyboard from './components/keyboard/Keyboard'
 
 function App() {
     return (
@@ -11,6 +12,7 @@ function App() {
                 <Header />
                 <AkordleInfo />
                 <Board />
+                <Keyboard />
             </div>
         </main>
     )
