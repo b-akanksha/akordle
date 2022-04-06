@@ -53,9 +53,40 @@ const akordleSlice = createSlice({
         setDifficulty(state, action) {
             state.difficulty = action.payload.difficulty
         },
+        advanceRound(state) {
+            state.boardData = ['', '', '', '', '', '']
+
+            state.streak = state.streak + 1
+            state.currentTurn = 0
+
+            state.exactLetters = []
+            state.misplacedLetters = []
+            state.unusedLetters = []
+
+            state.history = []
+            state.status = null
+
+            if (state.unusedWords.length >= 0) {
+                if (state.difficulty === 1) {
+                    state.unusedWords = FourWords
+                } else if (state.difficulty === 2) {
+                    state.unusedWords = FiveWords
+                } else if (state.difficulty === 3) {
+                    state.unusedWords = SixWords
+                }
+            }
+
+            let randomWordIndex = Math.floor(
+                Math.random() * state.unusedWords.length
+            )
+            state.currentWord = state.unusedWords[randomWordIndex]
+            state.unusedWords = state.unusedWords.filter(
+                (word) => word !== state.unusedWords[randomWordIndex]
+            )
+        },
     },
 })
 
-export const { resetGame, setDifficulty } = akordleSlice.actions
+export const { resetGame, setDifficulty, advanceRound } = akordleSlice.actions
 
 export default akordleSlice.reducer
