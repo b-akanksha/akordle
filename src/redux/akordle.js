@@ -8,7 +8,7 @@ const akordleSlice = createSlice({
     name: 'akordle',
     initialState: {
         streak: 0,
-        difficulty: 5,
+        difficulty: 2,
         boardData: ['', '', '', '', '', ''],
         currentTurn: 0,
         currentWord: '',
