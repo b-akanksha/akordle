@@ -1,44 +1,35 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { advanceRound } from '../../redux/akordle'
+import { useSelector } from 'react-redux'
 import './Board.scss'
 
 const Board = () => {
-    const dispatch = useDispatch()
-
-    const { boardData, currentWord, currentTurn, status, difficulty } =
-        useSelector((state) => state.akordle)
+    const { boardData, currentWord, currentTurn, difficulty } = useSelector(
+        (state) => state.akordle
+    )
 
     const [resize, setResize] = useState(false)
 
     const boardRef = useRef(null)
 
     useEffect(() => {
-        if (status === 'round_won') {
-            const timer = setTimeout(() => {
-                dispatch(advanceRound())
-            }, 2000)
-            return () => clearTimeout(timer)
-        }
-
         if (resize === true) {
             setResize(false)
         }
-    }, [boardData, resize, status, setResize, dispatch])
+    }, [boardData, resize, setResize])
 
-    useLayoutEffect(() => {
-        const handleResize = () => {
-            setResize(true)
-        }
+    // useLayoutEffect(() => {
+    //     const handleResize = () => {
+    //         setResize(true)
+    //     }
 
-        window.addEventListener('resize', handleResize)
-        document.addEventListener('load', handleResize)
+    //     window.addEventListener('resize', handleResize)
+    //     document.addEventListener('load', handleResize)
 
-        return () => {
-            window.removeEventListener('resize', handleResize)
-            document.removeEventListener('load', handleResize)
-        }
-    }, [setResize])
+    //     return () => {
+    //         window.removeEventListener('resize', handleResize)
+    //         document.removeEventListener('load', handleResize)
+    //     }
+    // }, [setResize])
 
     const getTileStyles = () => {
         if (boardRef.current !== null && boardRef.current !== undefined) {
