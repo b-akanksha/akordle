@@ -23,7 +23,6 @@ const akordleSlice = createSlice({
         resetGame(state) {
             state.boardData = ['', '', '', '', '', '']
 
-            state.streak = 0
             state.currentTurn = 0
 
             state.exactLetters = []
@@ -46,6 +45,7 @@ const akordleSlice = createSlice({
                 Math.random() * state.unusedWords.length
             )
             state.currentWord = state.unusedWords[randomWordIndex]
+
             state.unusedWords = state.unusedWords.filter(
                 (word) => word !== state.unusedWords[randomWordIndex]
             )
@@ -56,7 +56,6 @@ const akordleSlice = createSlice({
         advanceRound(state) {
             state.boardData = ['', '', '', '', '', '']
 
-            state.streak = state.streak + 1
             state.currentTurn = 0
 
             state.exactLetters = []
@@ -146,6 +145,7 @@ const akordleSlice = createSlice({
                 } else {
                     state.status = 'round_won'
                     state.currentTurn = state.currentTurn + 1
+                    state.streak = state.streak + 1
                 }
             }
         },
